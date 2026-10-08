@@ -1,0 +1,1021 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+<title>Growth Audit — Fabulous</title>
+<link rel="icon" href="img/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&family=Gaegu:wght@400;700&family=Patrick+Hand&family=Libre+Baskerville:wght@700&display=swap" rel="stylesheet">
+<style>
+:root{
+  color-scheme: only light;
+  /* ---- Fabulous, extracted from their live paywall ---- */
+  --fb-plum:#41224A; --fb-plum2:#3A1D40; --fb-plum3:#4E2B58;
+  --fb-blue:#1A73F2; --fb-indigo:#2A1BC4;
+  --fb-teal:#02CDA2; --fb-teal-ink:#127A62;
+  --fb-card:#FFFFFF; --fb-cta-ink:#2D2735; --fb-legal:#B7A6BE; --fb-txt:#E9E1EC;
+  --fb-sheet:#D9E6F2; --fb-sheet2:#EFE5D8; --fb-sheet-ink:#3B1C47;
+  --fb-t1:#5B7BD6; --fb-t2:#EF5A45; --fb-t3:#F6A135; --fb-t4:#FBD15B;
+  --fb-gold:#F9B403;
+  --r-ctl:28px; --r-media:22px;
+  /* ---- the report shell, in Fabulous's own palette ---- */
+  --bg:#F6F3FA; --bg2:#FFFFFF; --surf:#FFFFFF;
+  --hair:rgba(65,34,74,.10); --hair2:rgba(65,34,74,.18);
+  --ink:#2A1733; --ink2:#5A4C63; --ink3:#8F8597;
+  --accent:#41224A; --accent-lift:#7A2F8F;
+  --panel:#FFFFFF; --panel-ink:#17121A; --panel-muted:#625A68; --panel-line:#ECE8EF;
+  --accent-ink:#6B2580;
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);
+  font-family:'Plus Jakarta Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+  font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased}
+button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
+a{color:inherit}
+.wrap{max-width:1080px;margin:0 auto;padding:0 32px}
+@media(max-width:700px){.wrap{padding:0 20px}}
+
+/* ============ top bar ============ */
+.nav{position:sticky;top:0;z-index:70;background:rgba(246,243,250,.86);backdrop-filter:blur(18px) saturate(160%);
+  border-bottom:1px solid var(--hair)}
+.nav-in{max-width:1080px;margin:0 auto;padding:0 32px;height:58px;display:flex;align-items:center;gap:18px}
+@media(max-width:700px){.nav-in{padding:0 20px;gap:12px}}
+.nav-brand{display:flex;align-items:center;gap:9px;font-size:13.5px;font-weight:600;letter-spacing:-.01em}
+.nav-brand .mk{width:26px;height:26px;flex:none;display:block;border-radius:50%;overflow:hidden}
+.nav-brand .mk img{width:26px;height:26px;display:block}
+.nav-brand span{color:var(--ink2);font-weight:500}
+.nav-brand b{color:var(--ink);font-weight:600}
+.nav-links{margin-left:auto;display:flex;gap:2px;align-items:center}
+.nav-links button{padding:7px 14px;border-radius:8px;font-size:13px;font-weight:600;color:var(--ink3);transition:.16s}
+.nav-links button:hover{color:var(--ink)}
+.nav-links button.on{color:var(--ink);background:#fff;box-shadow:0 1px 4px rgba(65,34,74,.08)}
+@media(max-width:640px){.nav-brand span{display:none}}
+
+.view{display:none}
+.view.on{display:block}
+
+/* ============ hero ============ */
+.hero{padding:104px 0 0;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-340px;left:50%;transform:translateX(-50%);
+  width:1100px;height:640px;border-radius:50%;pointer-events:none;
+  background:radial-gradient(closest-side,rgba(122,47,143,.16),transparent 72%)}
+.hero::after{content:'';position:absolute;inset:0;pointer-events:none;z-index:0;
+  background:radial-gradient(40% 50% at 8% 20%,rgba(249,162,58,.16),transparent 70%),
+   radial-gradient(38% 45% at 92% 18%,rgba(203,77,238,.14),transparent 70%)}
+.hero>*{position:relative;z-index:1}
+.eyebrow{font-size:11.5px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--accent-lift);margin-bottom:26px}
+.hero h1{font-size:76px;line-height:.98;font-weight:700;letter-spacing:-.045em;margin:0 0 24px}
+@media(max-width:820px){.hero h1{font-size:50px}.hero{padding-top:70px}}
+.hero .lede{font-size:20px;line-height:1.5;font-weight:400;color:var(--ink2);max-width:620px;margin:0 auto;letter-spacing:-.012em}
+@media(max-width:820px){.hero .lede{font-size:17px}}
+.hero .meta{margin-top:30px;font-size:12.5px;color:var(--ink3);letter-spacing:.02em}
+.hero .meta b{color:var(--ink2);font-weight:600}
+
+.stats{display:flex;justify-content:center;gap:0;margin:70px auto 0;max-width:760px;
+  border-top:1px solid var(--hair);border-bottom:1px solid var(--hair)}
+.stat{flex:1;padding:26px 14px;text-align:center;border-left:1px solid var(--hair)}
+.stat:first-child{border-left:none}
+.stat b{display:block;font-size:26px;font-weight:700;letter-spacing:-.03em;color:var(--ink)}
+.stat span{display:block;font-size:11.5px;color:var(--ink3);margin-top:5px;line-height:1.35}
+@media(max-width:700px){.stat b{font-size:19px}.stat{padding:18px 8px}}
+
+.fb{max-width:760px;margin:0 auto;padding:30px 0 0;display:grid;grid-template-columns:1fr 1fr;gap:26px;text-align:left}
+@media(max-width:700px){.fb{grid-template-columns:1fr;gap:20px;padding-top:24px}}
+.fb-k{grid-column:1/-1;font-size:10.5px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--ink3);text-align:center;margin-bottom:-6px}
+.fb-i{display:flex;gap:12px;align-items:flex-start}
+.fb-i .tick{width:18px;height:18px;flex:none;margin-top:3px;border-radius:50%;background:rgba(122,47,143,.12);
+  display:grid;place-items:center}
+.fb-i .tick svg{width:10px;height:10px;stroke:var(--accent-lift);stroke-width:3;fill:none;
+  stroke-linecap:round;stroke-linejoin:round}
+.fb-i p{font-size:14px;line-height:1.55;color:var(--ink2);margin:0}
+.fb-i p b{color:var(--ink);font-weight:700}
+
+.sec{padding:96px 0}
+.sec-k{font-size:11.5px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--ink3);margin-bottom:18px}
+.sec h2{font-size:38px;line-height:1.14;font-weight:700;letter-spacing:-.035em;margin:0 0 20px;max-width:700px}
+@media(max-width:820px){.sec h2{font-size:29px}.sec{padding:64px 0}}
+.sec p.body{font-size:17px;line-height:1.66;color:var(--ink2);max-width:660px;margin:0 0 18px;letter-spacing:-.008em}
+.sec p.body b{color:var(--ink);font-weight:600}
+.rule{height:1px;background:var(--hair);margin:0}
+
+.notes{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:40px;max-width:820px}
+@media(max-width:760px){.notes{grid-template-columns:1fr}}
+.note{background:var(--surf);border:1px solid var(--hair);box-shadow:0 2px 10px rgba(65,34,74,.04);border-radius:16px;padding:24px 26px}
+.note h4{font-size:15px;font-weight:700;letter-spacing:-.015em;margin:0 0 8px}
+.note p{font-size:14px;line-height:1.6;color:var(--ink2);margin:0}
+
+.ideas{display:flex;flex-direction:column;gap:0;margin-top:14px;border-top:1px solid var(--hair)}
+.idea{display:grid;grid-template-columns:52px 1fr 180px;gap:26px;align-items:start;
+  padding:30px 4px;border-bottom:1px solid var(--hair);text-align:left;width:100%;transition:.18s}
+.idea:hover{background:rgba(255,255,255,.7)}
+@media(max-width:780px){.idea{grid-template-columns:38px 1fr;gap:16px}}
+.idea .no{font-size:13px;font-weight:700;color:var(--ink3);padding-top:4px;letter-spacing:.02em}
+.idea h3{font-size:21px;line-height:1.25;font-weight:700;letter-spacing:-.024em;margin:0 0 7px}
+@media(max-width:820px){.idea h3{font-size:18px}}
+.idea p{font-size:14.5px;line-height:1.6;color:var(--ink2);margin:0;max-width:540px}
+.idea .out{text-align:right;padding-top:3px}
+@media(max-width:780px){.idea .out{grid-column:2;text-align:left;padding-top:12px}}
+.idea .out b{display:block;font-size:19px;font-weight:700;letter-spacing:-.025em;color:var(--accent-lift);white-space:nowrap}
+.idea .out span{display:block;font-size:10.5px;color:var(--ink3);margin-top:3px;letter-spacing:.04em;text-transform:uppercase;font-weight:600}
+.idea .seeit{display:inline-flex;align-items:center;gap:5px;margin-top:11px;font-size:12.5px;
+  font-weight:600;color:var(--accent-lift)}
+.idea .seeit svg{width:12px;height:12px}
+
+.band{background:var(--surf);border:1px solid var(--hair);border-radius:28px;box-shadow:0 2px 10px rgba(65,34,74,.04);padding:40px 44px;margin-top:44px;
+  display:flex;align-items:center;gap:36px;flex-wrap:wrap}
+@media(max-width:700px){.band{padding:28px 24px;gap:22px}}
+.band .lab{font-size:11.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--ink3);margin-bottom:10px}
+.band .txt{flex:1;min-width:240px}
+.band .txt p{font-size:15.5px;line-height:1.6;color:var(--ink2);margin:0}
+.band .nums{display:flex;gap:34px}
+.band .nums div b{display:block;font-size:30px;font-weight:700;letter-spacing:-.035em;color:var(--accent-lift)}
+.band .nums div span{display:block;font-size:11px;color:var(--ink3);margin-top:2px;letter-spacing:.04em;
+  text-transform:uppercase;font-weight:600}
+
+.cta-row{display:flex;justify-content:center;margin-top:52px;align-items:center;gap:22px;flex-wrap:wrap}
+.bigbtn{display:inline-flex;align-items:center;gap:9px;background:var(--accent);color:#fff;
+  font-size:15px;font-weight:700;letter-spacing:-.01em;padding:15px 26px;border-radius:30px;transition:.16s}
+.bigbtn:hover{filter:brightness(1.15)}
+.bigbtn svg{width:15px;height:15px}
+
+.foot{border-top:1px solid var(--hair);padding:36px 0 70px;font-size:12.5px;line-height:1.6;color:var(--ink3)}
+
+/* ============ prototype stage ============ */
+.stage{display:grid;grid-template-columns:minmax(440px,1fr) minmax(400px,470px);gap:0;
+  align-items:start;min-height:calc(100vh - 58px)}
+@media(max-width:1080px){.stage{grid-template-columns:1fr}}
+.phonecol{padding:34px 24px 46px;display:flex;flex-direction:column;align-items:center;gap:18px}
+.panelcol{border-left:1px solid var(--hair);background:var(--panel);color:var(--panel-ink);
+  min-height:calc(100vh - 58px);position:sticky;top:58px;max-height:calc(100vh - 58px);overflow-y:auto}
+@media(max-width:1080px){.panelcol{position:static;max-height:none;border-left:none;border-top:1px solid var(--hair)}}
+
+.phone{position:relative;width:390px;height:844px;flex:none;background:#000;border:11px solid #000;
+  border-radius:46px;box-shadow:0 0 0 1.5px #DCD3E3,0 34px 70px -22px rgba(65,34,74,.38)}
+.phone-in{position:absolute;inset:0;border-radius:36px;overflow:hidden;background:var(--fb-plum);color-scheme:only light}
+.island{position:absolute;top:9px;left:50%;transform:translateX(-50%);width:104px;height:30px;background:#000;
+  border-radius:16px;z-index:60;pointer-events:none}
+.sbar{position:absolute;top:0;left:0;right:0;height:50px;z-index:55;pointer-events:none;display:flex;
+  align-items:center;justify-content:space-between;padding:14px 28px 0 34px;font:600 15px/1 'Inter',sans-serif;color:#fff;transition:color .3s}
+.sbar .glyphs{display:flex;gap:5px;align-items:center}
+.homebar{position:absolute;bottom:7px;left:50%;transform:translateX(-50%);width:134px;height:5px;
+  border-radius:3px;background:rgba(255,255,255,.9);z-index:56;pointer-events:none}
+.screenwrap{position:absolute;inset:0;overflow:hidden;background:var(--fb-plum)}
+
+/* ============ phone screens — Fabulous's system, all prefixed scr-/fb- ============ */
+.scr{position:absolute;inset:0;display:flex;flex-direction:column;background:var(--fb-plum);color:#fff;
+  font-family:'Inter',-apple-system,sans-serif;
+  transform:translateX(100%);transition:transform .36s cubic-bezier(.32,.72,0,1);z-index:10;will-change:transform}
+.scr.is-active{transform:translateX(0);z-index:20}
+.scr.is-past{transform:translateX(-24%)}
+.scr.sheet{transform:translateY(100%)}
+.scr.sheet.is-active{transform:translateY(0);z-index:30}
+.scr.nofx{transition:none}
+.scr-top{flex:none;padding:50px 22px 0;position:relative;z-index:2}
+.scr-body{flex:1;min-height:0;overflow-y:auto;overflow-x:hidden;padding:0 22px;scrollbar-width:none;position:relative;z-index:2}
+.scr-body::-webkit-scrollbar{display:none}
+.scr-foot{flex:none;padding:10px 22px 30px;position:relative;z-index:3;background:var(--fb-plum);
+  box-shadow:0 -14px 18px -6px var(--fb-plum)}
+
+.fb-x{width:40px;height:40px;display:grid;place-items:center;color:rgba(255,255,255,.85);margin-left:-10px}
+.fb-x svg{width:22px;height:22px}
+.fb-coin{display:block;width:96px;height:96px;padding:13px;margin:-6px auto -13px;border-radius:50%;background:radial-gradient(circle,rgba(249,180,3,.42),rgba(249,180,3,0) 68%)}
+.fb-pill{display:block;width:max-content;max-width:100%;margin:16px auto 0;background:var(--fb-blue);color:#fff;
+  font:700 14.5px/1.25 'Inter',sans-serif;padding:11px 18px;border-radius:24px;text-align:center}
+.fb-h{font:700 22px/1.25 'Inter',sans-serif;text-align:center;margin:20px 0 0;letter-spacing:-.01em}
+.fb-letter p{font-size:15px;line-height:1.42;color:var(--fb-txt);text-align:center;margin:14px 0 0}
+.fb-letter p.b{font-weight:700;color:#fff;font-size:16px}
+.fb-letter p.sig{font-style:italic}
+.fb-letter em{font-style:normal;color:#fff;font-weight:700;background:linear-gradient(transparent 62%,rgba(26,115,242,.55) 62%)}
+
+/* their poster card, now carrying the routine their answers built */
+.fb-sheetcard{margin:26px 0 0;border-radius:var(--r-media);padding:18px 14px 16px;
+  background:linear-gradient(180deg,var(--fb-sheet),var(--fb-sheet2));color:var(--fb-sheet-ink)}
+.fb-sh{font:700 27px/1.02 'Gaegu','Patrick Hand',cursive;text-align:center;letter-spacing:.005em}
+.fb-shs{font:700 16px/1.2 'Gaegu','Patrick Hand',cursive;text-align:center;margin-top:5px;color:#6A4C74}
+.fb-tiles{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;margin-top:24px;align-items:stretch}
+.fb-tile{border-radius:9px;padding:8px 5px 9px;min-width:0;overflow-wrap:break-word;hyphens:auto;color:#2B1630;transition:transform .3s,box-shadow .3s,opacity .3s;position:relative;min-height:126px}
+.fb-tile b{display:block;font:700 12.5px/1.02 'Gaegu','Patrick Hand',cursive;text-transform:uppercase;text-align:center;letter-spacing:.02em;
+  padding-bottom:5px;border-bottom:1.5px dashed rgba(43,22,48,.35);min-height:33px;display:flex;align-items:center;justify-content:center}
+.fb-tile ul{list-style:none;margin-top:5px}
+.fb-tile li{font:400 11.5px/1.08 'Gaegu','Patrick Hand',cursive;margin-top:3px}
+.fb-tile li:before{content:'- '}
+.fb-tile.t1{background:var(--fb-t1)} .fb-tile.t2{background:var(--fb-t2)} .fb-tile.t3{background:var(--fb-t3)} .fb-tile.t4{background:var(--fb-t4)}
+.fb-tiles.pick .fb-tile{opacity:.72;transform:scale(.95)}
+.fb-tiles.pick .fb-tile.on{opacity:1;transform:translateY(-6px) scale(1.04);box-shadow:0 10px 18px -8px rgba(43,22,48,.55),0 0 0 2.5px #fff}
+.fb-tile .tag{position:absolute;left:50%;top:-11px;transform:translateX(-50%);background:var(--fb-plum);color:#fff;
+  font:700 9px/1 'Inter',sans-serif;letter-spacing:.06em;text-transform:uppercase;padding:4px 6px;border-radius:8px;white-space:nowrap;display:none}
+.fb-tile.on .tag{display:block}
+.fb-tile.t1 .tag{left:-3px;transform:none} .fb-tile.t4 .tag{left:auto;right:-3px;transform:none}
+.fb-sheet{background:#fff;border-radius:16px;margin-top:14px;padding:12px 14px 10px;box-shadow:0 6px 16px -10px rgba(43,22,48,.4)}
+.fb-sheet .hd{display:flex;justify-content:space-between;align-items:baseline;gap:8px;font:700 19px/1.1 'Gaegu','Patrick Hand',cursive;color:var(--fb-sheet-ink)}
+.fb-sheet .hd span{font-size:15px;color:#7A6382;white-space:nowrap}
+.fb-ck{display:flex;align-items:center;gap:9px;font:400 16px/1.12 'Gaegu','Patrick Hand',cursive;color:#3A2A40;padding:5px 0;border-top:1px dashed #E2D9E6}
+.fb-ck:first-of-type{border-top:none}
+.fb-ck i{width:16px;height:16px;flex:none;border:1.6px solid #8D7A94;border-radius:3px}
+.fb-ck span{flex:1;min-width:0}
+.fb-ck small{margin-left:auto;font:600 9.5px/1 'Inter',sans-serif;letter-spacing:.04em;text-transform:uppercase;color:#9A86A1;white-space:nowrap}
+
+/* their own proof, from the "We hear you loud and clear" screen and the App Store */
+.fb-proof{margin-top:26px;border-top:1px solid rgba(255,255,255,.12);padding-top:18px}
+.fb-pk{font:700 11px/1 'Inter',sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--fb-legal);text-align:center}
+.fb-prow{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:14px;text-align:center}
+.fb-prow .v{height:34px;display:flex;align-items:center;justify-content:center}
+.fb-prow .duke{font:700 22px/1 'Libre Baskerville',serif;letter-spacing:-.01em}
+.fb-prow .num{font:700 15px/1 'Inter',sans-serif;background:rgba(255,255,255,.12);border-radius:8px;padding:7px 10px}
+.fb-prow p{font-size:10.5px;line-height:1.3;color:var(--fb-txt);margin-top:6px}
+.fb-rate{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:16px;padding:10px 12px;border-radius:14px;
+  background:rgba(255,255,255,.07);font-size:13px;color:var(--fb-txt)}
+.fb-rate .st{color:var(--fb-gold);letter-spacing:1px;font-size:13px}
+.fb-rate b{color:#fff}
+
+/* how the free week works */
+.fb-tl{margin-top:22px;padding:16px 16px 6px;border-radius:18px;background:rgba(255,255,255,.07)}
+.fb-tlh{font:700 15px/1.2 'Inter',sans-serif;margin-bottom:12px}
+.fb-tli{display:flex;gap:12px;position:relative;padding-bottom:12px}
+.fb-tli .d{width:26px;height:26px;flex:none;border-radius:50%;background:var(--fb-teal);display:grid;place-items:center;position:relative;z-index:1}
+.fb-tli .d svg{width:13px;height:13px;stroke:#0B3B30;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.fb-tli.l .d{background:#fff}
+.fb-tli:not(:last-child):after{content:'';position:absolute;left:12px;top:26px;bottom:0;width:2px;background:rgba(255,255,255,.18)}
+.fb-tli b{display:block;font-size:14px;line-height:1.3}
+.fb-tli span{display:block;font-size:12.5px;line-height:1.4;color:var(--fb-txt);margin-top:2px}
+
+.fb-links{display:flex;justify-content:center;gap:8px;margin-top:22px;font-size:12px;color:var(--fb-txt)}
+.fb-links a{text-decoration:underline}
+.fb-fine{font-size:10.5px;line-height:1.42;color:var(--fb-legal);text-align:center;margin:10px 0 18px}
+
+/* docked footer: their toggle card + their white pill */
+.fb-tog{display:flex;align-items:center;justify-content:space-between;background:var(--fb-card);border-radius:18px;padding:12px 14px 12px 18px;width:100%;text-align:left}
+.fb-tog span{font:700 16.5px/1.2 'Inter',sans-serif;color:var(--fb-teal-ink)}
+.fb-tog i{width:52px;height:31px;border-radius:16px;background:var(--fb-teal);position:relative;flex:none;transition:.2s}
+.fb-tog i:after{content:'';position:absolute;top:2.5px;left:23.5px;width:26px;height:26px;border-radius:50%;background:#fff;box-shadow:0 2px 4px rgba(0,0,0,.2);transition:.2s}
+.fb-tog.off span{color:#6F6475}
+.fb-tog.off i{background:#D9D3DD}
+.fb-tog.off i:after{left:2.5px}
+.fb-cta{display:block;width:100%;height:52px;border-radius:var(--r-ctl);background:#fff;color:var(--fb-cta-ink);margin-top:9px;
+  font:600 16.5px/1 'Inter',sans-serif;transition:filter .15s}
+.fb-cta:hover{filter:brightness(.97)}
+.fb-price{font-size:12.5px;line-height:1.35;color:var(--fb-txt);text-align:center;margin-top:9px}
+.fb-price b{color:#fff;font-weight:700}
+.fb-ghost{display:block;width:100%;height:38px;margin-top:4px;font:500 14.5px/1 'Inter',sans-serif;color:var(--fb-legal)}
+
+/* offer on close: comparison, direct purchase, no trial */
+.scr--offer .scr-top{padding-top:50px}
+.fb-oh{font:700 23px/1.2 'Inter',sans-serif;text-align:center;margin:14px 4px 0;letter-spacing:-.015em}
+.fb-osub{font-size:14.5px;line-height:1.45;color:var(--fb-txt);text-align:center;margin:8px 6px 0}
+.fb-cmp{margin-top:18px;display:flex;flex-direction:column;gap:10px}
+.fb-plan{display:flex;align-items:center;gap:12px;border-radius:18px;padding:14px 16px;background:rgba(255,255,255,.07);border:2px solid transparent;text-align:left;width:100%}
+.fb-plan .l{flex:1;min-width:0}
+.fb-plan .l b{display:block;font:600 15.5px/1.2 'Inter',sans-serif}
+.fb-plan .l span{display:block;font-size:12.5px;color:var(--fb-txt);margin-top:3px}
+.fb-plan .r{text-align:right;white-space:nowrap}
+.fb-plan .r b{display:block;font:700 18px/1 'Inter',sans-serif}
+.fb-plan .r span{display:block;font-size:12px;color:var(--fb-txt);margin-top:4px}
+.fb-plan.best{background:#fff;color:var(--fb-cta-ink);border-color:var(--fb-teal);position:relative}
+.fb-plan.best .l span,.fb-plan.best .r span{color:#6F6475}
+.fb-plan.best .badge{position:absolute;right:14px;top:-10px;background:var(--fb-teal);color:#06372C;font:700 10.5px/1 'Inter',sans-serif;
+  letter-spacing:.05em;text-transform:uppercase;padding:5px 8px;border-radius:9px}
+.fb-plan.muted .r b{color:var(--fb-txt)}
+.fb-ofeat{margin-top:14px;display:flex;flex-direction:column;gap:7px}
+.fb-f{display:flex;gap:10px;font-size:13.5px;line-height:1.35;color:var(--fb-txt)}
+.fb-f svg{width:16px;height:16px;flex:none;margin-top:1px;stroke:var(--fb-teal);stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}
+
+/* toast */
+.fb-toast{position:absolute;left:20px;right:20px;bottom:150px;z-index:80;background:rgba(20,12,24,.94);color:#fff;border-radius:14px;padding:13px 16px;
+  font:500 14px/1.4 'Inter',sans-serif;text-align:center;opacity:0;transform:translateY(8px);transition:.25s;pointer-events:none}
+.fb-toast.on{opacity:1;transform:none}
+
+/* dark mode — an approximation: no dark frames were supplied; their paywall is already dark plum */
+.phone-in.dark{--fb-plum:#150D18;--fb-plum2:#120A14;--fb-card:#241A29;--fb-cta-ink:#150D18;--fb-teal-ink:#5FE0BF;
+  --fb-sheet:#2A2236;--fb-sheet2:#2E2430;--fb-sheet-ink:#F1E8F4;--fb-txt:#CFC4D4;--fb-legal:#8E7F95}
+.phone-in.dark .screenwrap{background:var(--fb-plum)}
+.phone-in.dark .fb-shs{color:#B9A6C1}
+.phone-in.dark .fb-sheet{background:#1C1520;box-shadow:none}
+.phone-in.dark .fb-sheet .hd span,.phone-in.dark .fb-ck small{color:#9C8BA3}
+.phone-in.dark .fb-ck{color:#E7DEEA;border-top-color:#3A2F40}
+.phone-in.dark .fb-ck i{border-color:#7C6A84}
+.phone-in.dark .fb-tile.on{box-shadow:0 10px 18px -8px rgba(0,0,0,.7),0 0 0 2.5px #F1E8F4}
+.phone-in.dark .fb-tog.off i{background:#4A3F50}
+.phone-in.dark .fb-tog.off span{color:#9C8BA3}
+.phone-in.dark .fb-cta{background:#F4EEF6}
+.phone-in.dark .fb-plan.best{background:#241A29;color:#fff}
+.phone-in.dark .fb-plan.best .l span,.phone-in.dark .fb-plan.best .r span{color:#B9A6C1}
+.phone-in.dark .fb-tile .tag{background:#F1E8F4;color:#150D18}
+
+/* prototype toolbar, walkthrough, QR */
+.tools{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;max-width:520px}
+.seg{display:inline-flex;align-items:center;background:#fff;border:1px solid #E3DCE8;border-radius:20px;padding:3px;gap:2px}
+.seg button{padding:6px 11px;border-radius:16px;font:600 12px/1 'Plus Jakarta Sans',sans-serif;color:var(--ink2);transition:.14s}
+.seg button.on{background:var(--ink);color:#fff}
+.demo-btn{display:inline-flex;align-items:center;gap:7px;padding:9px 14px;border-radius:20px;background:var(--accent);color:#fff;
+  font:700 12px/1 'Plus Jakarta Sans',sans-serif}
+.demo-cap{width:390px;max-width:calc(100vw - 24px);background:#fff;border:1px solid var(--hair);border-radius:16px;padding:14px 14px 12px;
+  display:flex;align-items:center;gap:12px;position:relative;overflow:hidden;box-shadow:0 4px 18px rgba(65,34,74,.07)}
+.demo-cap .bar{position:absolute;left:0;top:0;right:0;height:3px;background:#F0ECF3}
+.demo-cap .bar i{display:block;height:100%;width:0;background:var(--accent-lift);transition:width .25s linear}
+.demo-cap p{flex:1;font-size:13.5px;line-height:1.45;color:var(--ink);margin:0;font-weight:500}
+.demo-cap button{font:700 12px/1 'Plus Jakarta Sans',sans-serif;color:var(--ink2);padding:7px 10px;border-radius:12px;border:1px solid #E3DCE8;flex:none}
+.finger{position:absolute;z-index:90;width:46px;height:46px;margin:-23px 0 0 -23px;border-radius:50%;background:rgba(255,255,255,.28);
+  border:2px solid rgba(255,255,255,.95);box-shadow:0 4px 14px rgba(0,0,0,.3);pointer-events:none;opacity:0;left:50%;top:60%;
+  transition:left .32s cubic-bezier(.4,0,.2,1),top .32s cubic-bezier(.4,0,.2,1),opacity .2s,transform .15s}
+.finger.show{opacity:1}
+.finger.press{transform:scale(.78);background:rgba(255,255,255,.45)}
+.qr{display:flex;align-items:center;gap:12px;background:#fff;border:1px solid var(--hair);border-radius:16px;padding:10px 16px 10px 10px;text-align:left}
+.qr img{width:135px;height:135px;display:block;image-rendering:pixelated;border-radius:6px}
+.qr span{font-size:12.5px;line-height:1.45;color:var(--ink2)}
+.qr b{display:block;color:var(--ink);font-size:13.5px}
+@media(max-width:1080px){.qr{display:none}}
+
+/* their onboarding answers, as the paywall receives them */
+.answers{width:100%;max-width:470px;background:#fff;border:1px solid var(--hair);border-radius:16px;padding:12px 14px 10px}
+.answers .k{font-size:10.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--ink3);margin-bottom:8px}
+.ans-row{display:flex;align-items:center;gap:10px;margin-bottom:7px;flex-wrap:wrap}
+.ans-row>span{font-size:12px;color:var(--ink2);width:118px;flex:none;line-height:1.25}
+.ans-row .seg{padding:2px;flex-wrap:wrap}
+.ans-row .seg button{padding:5px 9px;font-size:11.5px}
+
+#view-proto .tools{order:0} #view-proto .demo-cap{order:1} #view-proto .phone{order:2} #view-proto .chips{order:3}
+#view-proto .answers{order:4} #view-proto .chiphint{order:5} #view-proto .qr{order:6}
+.cta-row .qr{order:2}
+/* on a phone: the prototype is the screen */
+@media(max-width:500px){
+  #view-proto .phonecol{padding:0 0 28px;gap:14px}
+  #view-proto .phone{width:100vw;height:calc(100svh - 58px);min-height:640px;border:0;border-radius:0;box-shadow:none;order:1}
+  #view-proto .phone-in{border-radius:0}
+  #view-proto .island,#view-proto .sbar,#view-proto .homebar{display:none}
+  #view-proto .scr-top{padding-top:10px}
+  #view-proto .scr-foot{padding-bottom:16px}
+  #view-proto .tools{order:3;padding:0 12px}
+  #view-proto .demo-cap{position:fixed;left:12px;right:12px;bottom:12px;width:auto;max-width:none;z-index:95}
+  #view-proto .chips{order:4;padding:0 12px}
+  #view-proto .answers{order:5;margin:0 12px;width:auto}
+  #view-proto .chiphint{order:6}
+  .ans-row>span{width:100%}
+}
+
+/* overview: walkthrough button */
+.herobtns{display:flex;justify-content:center;margin-top:30px}
+.ghostbtn{display:inline-flex;align-items:center;gap:10px;background:#fff;border:1px solid var(--hair2);color:var(--ink);font-size:14px;
+  font-weight:700;padding:9px 20px 9px 9px;border-radius:30px;box-shadow:0 2px 12px rgba(65,34,74,.06);transition:.16s}
+.ghostbtn:hover{box-shadow:0 4px 18px rgba(65,34,74,.1)}
+.ghostbtn .pl{width:30px;height:30px;border-radius:50%;background:var(--accent);display:grid;place-items:center}
+.ghostbtn .pl svg{width:12px;height:12px;fill:#fff;margin-left:2px}
+
+/* chips */
+.chips{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;max-width:470px;margin:0 auto}
+.chip{padding:7px 13px;border-radius:20px;border:1px solid #E3DCE8;background:#fff;
+  font:600 12px/1 'Plus Jakarta Sans',sans-serif;color:var(--ink2);transition:.14s}
+.chip:hover{color:var(--ink);border-color:#CDBFD6}
+.chip.offer{border-style:dashed;border-color:var(--accent-lift);color:var(--accent-lift)}
+.chip.on{background:var(--accent);border-color:var(--accent);color:#fff;border-style:solid}
+.chiphint{text-align:center;font-size:11px;color:var(--ink3);margin:0;max-width:430px}
+
+/* ============ the short panel ============ */
+.pn{padding:30px 30px 60px}
+.pn-n{font-size:10.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-ink)}
+.pn-n.ctx{color:var(--panel-muted)}
+.pn-t{font-size:23px;line-height:1.18;font-weight:700;letter-spacing:-.028em;margin:8px 0 0;color:var(--panel-ink)}
+.pn-hyp{font-size:15px;line-height:1.62;color:#33293A;margin:16px 0 0}
+.pn-hyp b{font-weight:700;color:var(--panel-ink)}
+.pn-out{margin-top:22px;border-top:1px solid var(--panel-line);padding-top:18px}
+.pn-out .lab{font-size:10px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--panel-muted)}
+.pn-out .v{font-size:31px;font-weight:700;letter-spacing:-.035em;color:var(--accent-ink);margin-top:7px;line-height:1}
+.pn-kept{margin-top:22px;font-size:12.5px;line-height:1.55;color:var(--panel-muted)}
+.pn-kept b{color:#33293A;font-weight:700}
+.pn-foot{font-size:11.5px;line-height:1.55;color:var(--panel-muted);border-top:1px solid var(--panel-line);
+  padding-top:14px;margin-top:26px}
+.pn-sep{height:1px;background:var(--panel-line);margin:26px 0}
+.hidden{display:none !important}
+</style>
+</head>
+<body>
+
+<div class="nav">
+  <div class="nav-in">
+    <div class="nav-brand">
+      <span class="mk"><img src="img/logo.png" alt="Fabulous"></span>
+      <b>Growth Audit</b><span>· Fabulous</span>
+    </div>
+    <div class="nav-links">
+      <button class="on" data-view="over">Overview</button>
+      <button data-view="proto">Prototype</button>
+    </div>
+  </div>
+</div>
+
+<!-- ======================= OVERVIEW ======================= -->
+<div class="view on" id="view-over">
+
+<div class="hero">
+  <div class="wrap">
+    <!-- month + year = the day you build, not this file --><div class="eyebrow">Growth Audit · October 2026</div>
+    <h1>Fabulous</h1>
+    <p class="lede">Five ideas to unlock more revenue from the traffic you already have — all of them on your paywall.</p>
+    <div class="meta">Prepared by <b>Adapty</b> · based on your live iOS flow and your App Store listing</div>
+    <div class="herobtns"><button class="ghostbtn" data-demo><span class="pl"><svg viewBox="0 0 24 24"><path d="M7 4.5v15l12-7.5z"/></svg></span>Watch the 30-second walkthrough</button></div>
+    <div class="stats">
+      <div class="stat"><b>30,000+</b><span>apps run subscriptions<br>on Adapty</span></div>
+      <div class="stat"><b>5</b><span>ideas, each rebuilt<br>as a working screen</span></div>
+      <div class="stat"><b>0</b><span>design changes<br>to your art direction</span></div>
+    </div>
+
+    <div class="fb">
+      <div class="fb-k">Built in Adapty Flow Builder</div>
+      <div class="fb-i">
+        <span class="tick"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span>
+        <p><b>Millions of dollars</b> in subscription revenue pass through Flow Builder every month.</p>
+      </div>
+      <div class="fb-i">
+        <span class="tick"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span>
+        <p><b>Nearly 500 apps</b> actively build their paywalls and onboarding in it — plenty of them past $100K MRR.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="wrap">
+    <div class="sec-k">What this is</div>
+    <h2>Your onboarding learns a lot about a person. Your paywall uses almost none of it.</h2>
+    <p class="body">Adapty powers subscriptions for <b>30,000+ apps</b>, so we get to see what actually moves conversion and ARPU across the market rather than inside one app. We pointed that at Fabulous: walked your whole onboarding — the sleep and energy questions, the tracking sheet, the contract you hold to sign — read your App Store listing and your website, and stopped at the paywall.</p>
+    <p class="body">By then someone has told you the one change they want, when they wake up, how much time they have and which habit to add. The paywall shows them the same four routines it shows everyone, and no price. What follows is five ideas for that one screen and the moment after it, each built into a clickable prototype. <b>The prototype uses your design, not ours.</b></p>
+
+    <div class="notes">
+      <div class="note">
+        <h4>We did not redesign your paywall</h4>
+        <p>The plum background, the gold coin, “Transformation is just moments away!”, the letter from Future Julia, the hand-lettered routine card with its four coloured tiles, the green “Free trial enabled” toggle and the white “Try free for 7 days” pill are all still there. What changed is what they say.</p>
+      </div>
+      <div class="note">
+        <h4>You may have tested some of this</h4>
+        <p>We are working from the outside, so we cannot see your experiment history. If one of these is something you have already run, tell us — we will go deeper on the rest rather than repeat it.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="rule"></div>
+
+<div class="sec">
+  <div class="wrap">
+    <div class="sec-k">The five ideas</div>
+    <h2>Ranked by what we would test first.</h2>
+    <p class="body">Each one links straight to the place in the prototype that shows it.</p>
+
+    <div class="ideas">
+      <button class="idea" data-jump="paywall">
+        <span class="no">01</span>
+        <span>
+          <h3>Put the change they asked for in the letter</h3>
+          <p>Ten minutes earlier they answered “What single change would improve your life right now?” — more energy, more productivity, more mindfulness or more sleep. The letter from their future self and the routine card then say the same thing to everyone. Make both say their answer.</p>
+          <span class="seeit">See the screen <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </span>
+        <span class="out"><b>CR +15–20%</b><span>to purchase</span></span>
+      </button>
+
+      <button class="idea" data-jump="offer">
+        <span class="no">02</span>
+        <span>
+          <h3>Offer your $49.99 annual plan when they close</h3>
+          <p>Closing the paywall today ends the sale. Your App Store listing already carries a Fabulous Annual Subscription at $49.99 next to Premium Quarterly at $39.99. Show it once, on close, side by side with the quarterly price, as a straight purchase.</p>
+          <span class="seeit">See the screen <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </span>
+        <span class="out"><b>ARPU +10–15%</b><span>second chance</span></span>
+      </button>
+
+      <button class="idea" data-jump="proof">
+        <span class="no">03</span>
+        <span>
+          <h3>Bring your Duke, 96% and 22M back to the paywall</h3>
+          <p>Your best proof — born at Duke’s Center for Advanced Hindsight, 96% of users saying Fabulous changed their lives, 22 million users — sits on a screen in the middle of the quiz. Next to the button there is none, and your 4.4 from 89K ratings and Editors’ Choice appear nowhere.</p>
+          <span class="seeit">See the screen <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </span>
+        <span class="out"><b>CR +10–15%</b><span>to purchase</span></span>
+      </button>
+
+      <button class="idea" data-jump="paywall">
+        <span class="no">04</span>
+        <span>
+          <h3>Show the morning their answers built</h3>
+          <p>“Build a Routine based on your goals!” sits above a poster that is the same for everyone. They told you they wake at 7:00, have 10–20 minutes, skipped breakfast and want to add breathwork. Put that morning on your own tracking sheet, under their tile.</p>
+          <span class="seeit">See the screen <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </span>
+        <span class="out"><b>CR +10–15%</b><span>to purchase</span></span>
+      </button>
+
+      <button class="idea" data-jump="proof">
+        <span class="no">05</span>
+        <span>
+          <h3>Say the price before they tap</h3>
+          <p>The paywall never names a price. “$39.99 every 3 months” first appears in Apple’s purchase sheet, after the tap. One line under the button and a two-step “how your free week works” remove the surprise.</p>
+          <span class="seeit">See the screen <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </span>
+        <span class="out"><b>CR +5–10%</b><span>to purchase</span></span>
+      </button>
+    </div>
+
+    <div class="band">
+      <div class="txt">
+        <div class="lab">Potential outcome</div>
+        <p>All five work on the same moment: the paywall answers what the person just told you, shows proof and a price they can trust, and still has something to offer when they say no.</p>
+      </div>
+      <div class="nums">
+        <div><b>+25%</b><span>CR to purchase</span></div>
+        <div><b>+15%</b><span>ARPU</span></div>
+      </div>
+    </div>
+
+    <div class="cta-row">
+      <div class="qr"><img src="img/qr.svg" alt="QR code for the prototype"><span><b>Or open it on your phone</b>Scan to try the paywall in your hand.</span></div>
+      <button class="bigbtn" data-view="proto">Open the prototype
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="foot">
+  <div class="wrap">
+    Impact ranges are Adapty's expected effect from teardowns and A/B tests across subscription apps — not measured lift for Fabulous. Every price, rating, quote and proof point here and in the prototype comes from Fabulous's own App Store listing, website and in-app screens.
+  </div>
+</div>
+</div><!-- /view-over -->
+
+<!-- ======================= PROTOTYPE ======================= -->
+<div class="view" id="view-proto">
+<div class="stage">
+  <div class="phonecol">
+    <div class="tools" id="tools">
+      <div class="seg" id="segLang"><button data-lang="en" class="on">EN</button><button data-lang="fr">FR</button><button data-lang="es">ES</button></div>
+      <div class="seg" id="segTheme"><button data-theme="light" class="on">Light</button><button data-theme="dark">Dark</button></div>
+      <button class="demo-btn" id="demoBtn"><svg viewBox="0 0 24 24" width="11" height="11" fill="currentColor"><path d="M7 4.5v15l12-7.5z"/></svg>30-sec walkthrough</button>
+    </div>
+    <div class="phone">
+      <div class="phone-in" id="phoneIn">
+        <div class="island"></div>
+        <div class="sbar" id="sbar">
+          <span>9:41</span>
+          <span class="glyphs">
+            <svg width="17" height="11" viewBox="0 0 17 11" fill="currentColor"><rect x="0" y="7.5" width="3" height="3.5" rx="1"/><rect x="4.5" y="5.5" width="3" height="5.5" rx="1"/><rect x="9" y="3" width="3" height="8" rx="1"/><rect x="13.5" y="0" width="3" height="11" rx="1"/></svg>
+            <svg width="16" height="11" viewBox="0 0 16 11" fill="currentColor"><path d="M8 10.5 5.6 7.9a3.4 3.4 0 0 1 4.8 0L8 10.5Zm0-5.6a6.4 6.4 0 0 0-4.5 1.9L1.7 4.9a9 9 0 0 1 12.6 0l-1.8 1.9A6.4 6.4 0 0 0 8 4.9Z"/></svg>
+            <svg width="25" height="12" viewBox="0 0 25 12" fill="none"><rect x=".6" y=".6" width="20" height="10.8" rx="3" stroke="currentColor" stroke-opacity=".5"/><rect x="2.2" y="2.2" width="16.5" height="7.6" rx="1.8" fill="currentColor"/><path d="M22.3 4.1v3.8a2 2 0 0 0 0-3.8Z" fill="currentColor" fill-opacity=".5"/></svg>
+          </span>
+        </div>
+        <div class="homebar" id="homebar"></div>
+        <div class="finger" id="finger"></div>
+        <div class="fb-toast" id="toast"></div>
+        <div class="screenwrap">
+
+<!-- PAYWALL -->
+<section class="scr scr--pay" data-id="paywall">
+  <div class="scr-top" style="padding-bottom:0">
+    <button class="fb-x" id="payClose" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+  </div>
+  <div class="scr-body" id="payBody">
+    <svg class="fb-coin" viewBox="0 0 100 100" aria-hidden="true">
+      <defs><radialGradient id="cg" cx="40%" cy="35%" r="70%"><stop offset="0" stop-color="#FFE36B"/><stop offset=".6" stop-color="#F9B403"/><stop offset="1" stop-color="#E08A00"/></radialGradient></defs>
+      <path d="M50 6 81 19 94 50 81 81 50 94 19 81 6 50 19 19Z" fill="url(#cg)"/>
+      <circle cx="50" cy="50" r="27" fill="none" stroke="#FFF3B0" stroke-opacity=".7" stroke-width="3"/>
+      <path d="M50 36 62 58H38Z" fill="none" stroke="#FFF3B0" stroke-opacity=".85" stroke-width="3" stroke-linejoin="round"/>
+      <path d="M44 47h12M50 47l-6 11M50 47l6 11" stroke="#FFF3B0" stroke-opacity=".6" stroke-width="2"/>
+    </svg>
+    <div class="fb-pill" data-t="pw.pill"></div>
+    <h2 class="fb-h" id="lHi"></h2>
+    <div class="fb-letter">
+      <p id="l1"></p>
+      <p class="b" id="l2"></p>
+      <p id="l3"></p>
+      <p data-t="pw.l4"></p>
+      <p class="sig" id="lSig"></p>
+    </div>
+
+    <div class="fb-sheetcard" id="routine">
+      <div class="fb-sh" id="rTitle"></div>
+      <div class="fb-shs" id="rSub"></div>
+      <div class="fb-tiles pick" id="tiles"></div>
+      <div class="fb-sheet">
+        <div class="hd"><b id="rHd"></b><span id="rWhen"></span></div>
+        <div id="rList"></div>
+      </div>
+    </div>
+
+    <div class="fb-proof" id="proof">
+      <div class="fb-pk" data-t="pr.k"></div>
+      <div class="fb-prow">
+        <div><div class="v"><span class="duke">Duke</span></div><p data-t="pr.duke"></p></div>
+        <div><div class="v"><span class="num">96%</span></div><p data-t="pr.96"></p></div>
+        <div><div class="v"><span class="num">22M</span></div><p data-t="pr.22"></p></div>
+      </div>
+      <div class="fb-rate"><span class="st">★★★★★</span><span data-th="pr.rate"></span></div>
+    </div>
+
+    <div class="fb-tl" id="timeline">
+      <div class="fb-tlh" data-t="tl.h"></div>
+      <div class="fb-tli"><span class="d"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><div><b id="tl1"></b><span id="tl1s"></span></div></div>
+      <div class="fb-tli l"><span class="d"><svg viewBox="0 0 24 24"><rect x="5" y="6" width="14" height="13" rx="2"/><path d="M5 10h14M9 4v4M15 4v4"/></svg></span><div><b id="tl2"></b><span data-t="tl.2s"></span></div></div>
+    </div>
+
+    <div class="fb-links"><a data-t="lg.terms"></a><span>•</span><a data-t="lg.priv"></a></div>
+    <p class="fb-fine" data-t="lg.fine"></p>
+  </div>
+  <div class="scr-foot">
+    <button class="fb-tog" id="trialTog"><span id="togT"></span><i></i></button>
+    <button class="fb-cta" id="payCta"></button>
+    <p class="fb-price" id="payPrice"></p>
+  </div>
+</section>
+
+<!-- OFFER -->
+<section class="scr scr--offer sheet" data-id="offer">
+  <div class="scr-top" style="padding-bottom:0">
+    <button class="fb-x" id="offClose" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+  </div>
+  <div class="scr-body">
+    <svg class="fb-coin" viewBox="0 0 100 100" aria-hidden="true" style="width:68px;height:68px;padding:9px;margin-bottom:-10px">
+      <path d="M50 6 81 19 94 50 81 81 50 94 19 81 6 50 19 19Z" fill="url(#cg)"/>
+      <circle cx="50" cy="50" r="27" fill="none" stroke="#FFF3B0" stroke-opacity=".7" stroke-width="3"/>
+      <path d="M50 36 62 58H38Z" fill="none" stroke="#FFF3B0" stroke-opacity=".85" stroke-width="3" stroke-linejoin="round"/>
+    </svg>
+    <div class="fb-pill" id="ofPill"></div>
+    <h2 class="fb-oh" id="ofH"></h2>
+    <p class="fb-osub" data-t="of.sub"></p>
+    <div class="fb-cmp">
+      <div class="fb-plan best"><span class="badge" data-t="of.badge"></span>
+        <div class="l"><b>Fabulous Annual</b><span data-t="of.a.s"></span></div>
+        <div class="r"><b>$49.99</b><span data-t="of.a.m"></span></div></div>
+      <div class="fb-plan muted">
+        <div class="l"><b>Premium Quarterly</b><span data-t="of.q.s"></span></div>
+        <div class="r"><b>$159.96</b><span data-t="of.q.m"></span></div></div>
+    </div>
+    <div class="fb-ofeat" id="offFeat"></div>
+    <div style="height:14px"></div>
+  </div>
+  <div class="scr-foot">
+    <button class="fb-cta" id="offerCta" data-t="of.cta" style="margin-top:0"></button>
+    <button class="fb-ghost" id="offerNo" data-t="of.no"></button>
+  </div>
+</section>
+
+        </div>
+      </div>
+    </div>
+    <div class="demo-cap hidden" id="demoCap"><div class="bar"><i id="demoProg"></i></div><p id="demoTxt"></p><button id="demoStop">Stop</button></div>
+    <div class="chips" id="chips"></div>
+    <div class="answers" id="answers">
+      <div class="k">Their onboarding answers</div>
+      <div class="ans-row"><span>Single change they want</span><div class="seg" id="segGoal"><button data-v="energy">More energy</button><button data-v="productivity">More productivity</button><button data-v="mindfulness">More mindfulness</button><button data-v="sleep">More sleep</button></div></div>
+      <div class="ans-row"><span>Wakes up</span><div class="seg" id="segWake"><button data-v="7">7:00AM</button><button data-v="8">8:00AM</button><button data-v="9">9:00AM</button></div></div>
+      <div class="ans-row"><span>Habit to add</span><div class="seg" id="segHabit"><button data-v="stretch">Stretch</button><button data-v="breath">Breathwork</button><button data-v="values">Values alignment</button></div></div>
+    </div>
+    <p class="chiphint">Jump anywhere — or change an answer and watch the paywall follow.</p>
+    <div class="qr"><img src="img/qr.svg" alt="QR code for this prototype"><span><b>Open it on your phone</b>Scan to try the paywall in your hand.</span></div>
+  </div>
+  <div class="panelcol"><div class="pn" id="panel"></div></div>
+</div>
+</div><!-- /view-proto -->
+
+<script>
+/* ================= copy, per language (phone screens only) ================= */
+var LANGS = ['en','fr','es'];
+var LOC = {en:'en-US', fr:'fr-FR', es:'es-ES'};
+var T = {
+ 'pw.pill': ["Transformation is just moments away!","La transformation n’est plus qu’à un instant !","¡La transformación está a un paso!"],
+ 'pw.hi':   ["{n}, do you copy?","{n}, tu me reçois ?","{n}, ¿me recibes?"],
+ 'pw.l1':   ["It's me, future {n}. I'm calling from {y} because today is an important day for you — for us.","C’est moi, {n} du futur. Je t’appelle de {y}, parce qu’aujourd’hui est un grand jour pour toi — pour nous.","Soy yo, {n} del futuro. Te llamo desde {y} porque hoy es un día importante para ti, para nosotras."],
+ 'pw.l2':   ["{d} is the day we decided to change our lives for the better.","Le {d} est le jour où nous avons décidé de changer de vie pour de bon.","El {d} es el día en que decidimos cambiar nuestra vida para mejor."],
+ 'pw.l3':   ["I have excellent news: {g}, thanks to the choices you're making.","J’ai une excellente nouvelle : {g}, grâce aux choix que tu fais.","Tengo una noticia excelente: {g}, gracias a las decisiones que estás tomando."],
+ 'pw.l4':   ["I'll be with you every step of the way.","Je serai avec toi à chaque étape.","Estaré contigo en cada paso."],
+ 'pw.sig':  ["See you soon,<br>Future {n}","À très vite,<br>{n} du futur","Hasta pronto,<br>{n} del futuro"],
+ 'r.title': ["{n}'s {g} Routine","La routine {g} de {n}","La rutina de {g} de {n}"],
+ 'r.sub':   ["built from your answers","construite à partir de tes réponses","creada con tus respuestas"],
+ 'r.tag':   ["Your first journey","Ton 1er parcours","Tu 1.er viaje"],
+ 'r.hd':    ["Every morning","Chaque matin","Cada mañana"],
+ 'r.when':  ["{w} · 10–20 min","{w} · 10–20 min","{w} · 10–20 min"],
+ 'r.water': ["Drink a glass of water","Boire un verre d’eau","Beber un vaso de agua"],
+ 'r.bfast': ["Eat a healthy breakfast","Prendre un petit-déjeuner sain","Tomar un desayuno sano"],
+ 'r.why.goal': ["your goal","ton objectif","tu objetivo"],
+ 'r.why.add':  ["you added","ajouté","añadido"],
+ 'r.why.water':["1 glass today","1 verre aujourd’hui","1 vaso hoy"],
+ 'r.why.bfast':["no breakfast","pas de p’tit-déj","sin desayuno"],
+ 'pr.k':    ["Why 22 million people trust Fabulous","Pourquoi 22 millions de personnes font confiance à Fabulous","Por qué 22 millones confían en Fabulous"],
+ 'pr.duke': ["Born at Duke’s Center for Advanced Hindsight","Né au Center for Advanced Hindsight de Duke","Nació en el Center for Advanced Hindsight de Duke"],
+ 'pr.96':   ["say Fabulous changed their lives for the better","disent que Fabulous a changé leur vie","dicen que Fabulous les cambió la vida"],
+ 'pr.22':   ["members strong","membres","miembros"],
+ 'pr.rate': ["<b>4.4</b> from 89K ratings · App Store Editors’ Choice","<b>4,4</b> sur 89K notes · Choix de la rédaction App Store","<b>4,4</b> de 89K valoraciones · Selección del Editor en App Store"],
+ 'tl.h':    ["How your free week works","Comment se passe ta semaine gratuite","Cómo funciona tu semana gratis"],
+ 'tl.1':    ["Today · {d}","Aujourd’hui · {d}","Hoy · {d}"],
+ 'tl.1s':   ["Your {g} Routine starts. Everything in Premium is open.","Ta routine {g} commence. Tout Premium est ouvert.","Empieza tu rutina de {g}. Todo Premium está abierto."],
+ 'tl.2':    ["{d} · $39.99 for 3 months","{d} · $39.99 pour 3 mois","{d} · $39.99 por 3 meses"],
+ 'tl.2s':   ["Your first charge. Cancel in Settings at least a day before and you pay nothing.","Premier prélèvement. Annule dans les Réglages au moins un jour avant et tu ne paies rien.","Tu primer cobro. Cancela en Ajustes al menos un día antes y no pagas nada."],
+ 'tog.on':  ["Free trial enabled","Essai gratuit activé","Prueba gratis activada"],
+ 'tog.off': ["Enable free trial","Activer l’essai gratuit","Activar prueba gratis"],
+ 'cta.on':  ["Try free for 7 days","Essayer 7 jours gratuits","Probar 7 días gratis"],
+ 'cta.off': ["Continue","Continuer","Continuar"],
+ 'price.on':["<b>7 days free</b>, then $39.99 every 3 months.<br>Cancel anytime.","<b>7 jours gratuits</b>, puis $39.99 tous les 3 mois.<br>Sans engagement.","<b>7 días gratis</b>, luego $39.99 cada 3 meses.<br>Cancela cuando quieras."],
+ 'price.off':["<b>$39.99 every 3 months</b>, starting today.<br>Cancel anytime.","<b>$39.99 tous les 3 mois</b>, dès aujourd’hui.<br>Sans engagement.","<b>$39.99 cada 3 meses</b>, desde hoy.<br>Cancela cuando quieras."],
+ 'lg.terms':["Terms & Conditions","Conditions générales","Términos y condiciones"],
+ 'lg.priv': ["Privacy Policy","Confidentialité","Privacidad"],
+ 'lg.fine': ["The subscription will automatically renew unless auto-renew is turned off at least 24 hours before the end of the current period. You can go to your Account settings to manage your subscription and turn off auto-renew. If you subscribe before your free trial ends, the rest of your free trial will be forfeited.",
+             "L’abonnement se renouvelle automatiquement sauf si le renouvellement est désactivé au moins 24 heures avant la fin de la période en cours. Tu peux gérer ton abonnement dans les réglages de ton compte. Si tu t’abonnes avant la fin de l’essai, le reste de l’essai est perdu.",
+             "La suscripción se renueva automáticamente salvo que desactives la renovación al menos 24 horas antes del final del periodo actual. Puedes gestionarla en los ajustes de tu cuenta. Si te suscribes antes de que acabe la prueba, perderás el resto de la prueba."],
+ 'of.pill': ["Before you go, {n}","Avant de partir, {n}","Antes de irte, {n}"],
+ 'of.h':    ["A whole year of your {g} Routine for $49.99","Une année entière de ta routine {g} pour $49.99","Un año entero de tu rutina de {g} por $49.99"],
+ 'of.sub':  ["No trial, no quarterly renewals. One payment, twelve months.","Pas d’essai, pas de renouvellement trimestriel. Un paiement, douze mois.","Sin prueba ni renovaciones trimestrales. Un pago, doce meses."],
+ 'of.badge':["Pay once a year","Un paiement par an","Un pago al año"],
+ 'of.a.s':  ["12 months · billed today","12 mois · payé aujourd’hui","12 meses · se cobra hoy"],
+ 'of.a.m':  ["$4.17 a month","$4.17 par mois","$4.17 al mes"],
+ 'of.q.s':  ["$39.99 every 3 months","$39.99 tous les 3 mois","$39.99 cada 3 meses"],
+ 'of.q.m':  ["a year · $13.33 a month","par an · $13.33 par mois","al año · $13.33 al mes"],
+ 'of.f1':   ["Coaching series on anxiety, self-love and productivity","Séries de coaching : anxiété, amour de soi, productivité","Series de coaching: ansiedad, amor propio, productividad"],
+ 'of.f2':   ["Unlimited habits for your morning and evening routines","Habitudes illimitées pour tes routines du matin et du soir","Hábitos ilimitados para tus rutinas de mañana y noche"],
+ 'of.f3':   ["Premium Journeys for mental health, self-care and fitness","Parcours Premium : santé mentale, soin de soi, forme","Viajes Premium: salud mental, autocuidado y forma física"],
+ 'of.cta':  ["Get the year · $49.99","Prendre l’année · $49.99","Obtener el año · $49.99"],
+ 'of.no':   ["No thanks","Non merci","No, gracias"],
+ 'toast':   ["The App Store purchase sheet opens here.","La feuille d’achat de l’App Store s’ouvre ici.","Aquí se abre la compra del App Store."]
+};
+/* the four answers to “What single change would improve your life right now?” */
+var GOALS = {
+  energy:      {g:['Energy','Énergie','energía'], tile:'t2',
+                news:["I wake up with energy and keep it all day","j’ai de l’énergie du matin au soir","tengo energía de la mañana a la noche"],
+                items:[["Get some sun","Prendre le soleil","Tomar el sol"],["Move your body for 20 min","Bouger 20 min","Mover el cuerpo 20 min"]]},
+  productivity:{g:['Productivity','Productivité','productividad'], tile:'t1',
+                news:["I get the important things done before noon","je fais l’essentiel avant midi","termino lo importante antes del mediodía"],
+                items:[["Write your to-do list","Écrire ta liste de tâches","Escribir tu lista de tareas"],["Make the bed","Faire ton lit","Hacer la cama"]]},
+  mindfulness: {g:['Mindfulness','Pleine conscience','atención plena'], tile:'t4',
+                news:["I'm calm, present and kind to myself","le calme et la bienveillance envers moi-même ne me quittent plus","vivo con calma y me trato con cariño"],
+                items:[["Meditate for 10 mins","Méditer 10 min","Meditar 10 min"],["Write down what you're grateful for","Noter ce pour quoi tu es reconnaissant·e","Anotar lo que agradeces"]]},
+  sleep:       {g:['Sleep','Sommeil','sueño'], tile:'t1',
+                news:["I sleep through the night and wake up rested","mes nuits sont complètes et mes réveils reposants","duermo toda la noche y despierto con descanso"],
+                items:[["Make the bed","Faire ton lit","Hacer la cama"],["Get some sun","Prendre le soleil","Tomar el sol"]]}
+};
+var HABITS = { stretch:['Stretch','Étirements','Estiramientos'], breath:['Breathwork','Respiration','Respiración'], values:['Values alignment','Alignement avec mes valeurs','Alinearme con mis valores'] };
+/* their poster's four tiles, bullets as printed */
+var TILES = [
+  {id:'t1', t:['Take it easy','Prendre son temps','Con calma'], b:[['Make the bed','Prepare tea or coffee','Do some stretches','Write your to-do list'],['Faire son lit','Préparer un thé ou un café','Quelques étirements','Écrire sa liste'],['Hacer la cama','Preparar té o café','Estirarse un poco','Escribir tu lista']]},
+  {id:'t2', t:['Get energized','Faire le plein d’énergie','Cargarse de energía'], b:[['Get some sun','Move your body for 20 min','Eat a healthy breakfast','Wear an outfit that makes you feel good'],['Prendre le soleil','Bouger 20 min','Petit-déj sain','Une tenue qui fait du bien'],['Tomar el sol','Moverse 20 min','Desayuno sano','Ropa que te haga sentir bien']]},
+  {id:'t3', t:['Beat boredom','Vaincre l’ennui','Vencer el aburrimiento'], b:[['Tidy your space','Listen to a podcast','Try a new recipe','Explore a new hobby'],['Ranger son espace','Écouter un podcast','Tester une recette','Un nouveau loisir'],['Ordenar tu espacio','Escuchar un pódcast','Probar una receta','Un nuevo hobby']]},
+  {id:'t4', t:['Connect with yourself','Se reconnecter à soi','Conectar contigo'], b:[['Understand how you thrive','Meditate for 10 mins','Write down what you\'re grateful for'],['Comprendre ce qui te porte','Méditer 10 min','Noter ta gratitude'],['Entender qué te impulsa','Meditar 10 min','Anotar lo que agradeces']]}
+];
+
+/* ================= state ================= */
+var S0 = {lang:'en', theme:'light'};
+function defaults(){ return { lang:S0.lang, theme:S0.theme, name:'Julia', goal:'energy', wake:'7', habit:'breath', trial:true, sec:'top' }; }
+var S = defaults();
+function L(){ return LANGS.indexOf(S.lang); }
+function t(k,v){ var s=(T[k]||[k])[L()]; if(v) Object.keys(v).forEach(function(x){ s=s.split('{'+x+'}').join(v[x]); }); return s; }
+function esc(s){ return String(s).replace(/[&<>"]/g,function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+function hw(s){ return String(s).replace(/’/g,"'"); } /* the hand-lettered font has no curly apostrophe */
+function fmtDate(d,o){ return new Intl.DateTimeFormat(LOC[S.lang],o).format(d); }
+function wakeLabel(){ var h=+S.wake; return S.lang==='en' ? h+':00 AM' : (h<10?'0':'')+h+':00'; }
+function gName(cap){ var g=GOALS[S.goal].g[L()]; return cap? g.charAt(0).toUpperCase()+g.slice(1) : g; }
+
+/* ================= builders (re-run on language change) ================= */
+var tickSvg='<svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>';
+function applyStatic(){
+  document.documentElement.lang=S.lang;
+  document.querySelectorAll('[data-t]').forEach(function(el){ el.textContent=t(el.dataset.t); });
+  document.querySelectorAll('[data-th]').forEach(function(el){ el.innerHTML=t(el.dataset.th); });
+  var li=L();
+  document.getElementById('tiles').innerHTML=TILES.map(function(x){
+    return '<div class="fb-tile '+x.id+'" data-tile="'+x.id+'"><span class="tag">'+t('r.tag')+'</span><b>'+hw(x.t[li])+'</b><ul>'
+      + x.b[li].map(function(b){ return '<li>'+hw(b)+'</li>'; }).join('') + '</ul></div>'; }).join('');
+  document.getElementById('offFeat').innerHTML=['of.f1','of.f2','of.f3'].map(function(k){ return '<div class="fb-f">'+tickSvg+'<span>'+t(k)+'</span></div>'; }).join('');
+}
+
+/* ================= everything downstream reads S ================= */
+function syncScreen(){
+  var li=L(), G=GOALS[S.goal], n=esc(S.name), now=new Date();
+  var yr=now.getFullYear()+1, day7=new Date(now.getTime()+7*864e5);
+  var gLow=G.g[li], gCap=gName(true), gTitle=(S.lang==='en'? gCap : gLow);
+  /* the letter: their copy, now carrying the answer */
+  document.getElementById('lHi').textContent=t('pw.hi',{n:S.name});
+  document.getElementById('l1').textContent=t('pw.l1',{n:S.name,y:yr});
+  var dl=fmtDate(now,{weekday:'long',month:'long',day:'numeric',year:'numeric'});
+  document.getElementById('l2').textContent=t('pw.l2',{d:dl.charAt(0).toUpperCase()+dl.slice(1)});
+  document.getElementById('l3').innerHTML=t('pw.l3',{g:'<em>'+G.news[li]+'</em>'});
+  document.getElementById('lSig').innerHTML=t('pw.sig',{n:n});
+  /* the routine card: their poster, their tile lifted, their tracking sheet filled in */
+  document.getElementById('rTitle').textContent=hw(t('r.title',{n:S.name,g:gTitle}));
+  document.getElementById('rSub').textContent=hw(t('r.sub'));
+  document.querySelectorAll('#tiles .fb-tile').forEach(function(el){ el.classList.toggle('on', el.dataset.tile===G.tile); });
+  document.getElementById('rHd').textContent=t('r.hd');
+  document.getElementById('rWhen').textContent=t('r.when',{w:wakeLabel()});
+  var rows=[[G.items[0][li],t('r.why.goal')],[G.items[1][li],t('r.why.goal')],[HABITS[S.habit][li],t('r.why.add')],
+            [S.goal==='energy'? t('r.water') : t('r.bfast'), S.goal==='energy'? t('r.why.water') : t('r.why.bfast')]];
+  document.getElementById('rList').innerHTML=rows.map(function(r){ return '<div class="fb-ck"><i></i><span>'+hw(r[0])+'</span><small>'+r[1]+'</small></div>'; }).join('');
+  /* price, before the tap */
+  document.getElementById('tl1').textContent=t('tl.1',{d:fmtDate(now,{month:'short',day:'numeric'})});
+  document.getElementById('tl1s').textContent=t('tl.1s',{g:gTitle});
+  document.getElementById('tl2').textContent=t('tl.2',{d:fmtDate(day7,{month:'short',day:'numeric'})});
+  document.getElementById('timeline').classList.toggle('hidden',!S.trial);
+  var tog=document.getElementById('trialTog'); tog.classList.toggle('off',!S.trial);
+  document.getElementById('togT').textContent=t(S.trial?'tog.on':'tog.off');
+  document.getElementById('payCta').textContent=t(S.trial?'cta.on':'cta.off');
+  document.getElementById('payPrice').innerHTML=t(S.trial?'price.on':'price.off');
+  /* offer */
+  document.getElementById('ofPill').textContent=t('of.pill',{n:S.name});
+  document.getElementById('ofH').textContent=t('of.h',{g:gTitle});
+  /* answer controls */
+  setSeg('segGoal','v',S.goal); setSeg('segWake','v',S.wake); setSeg('segHabit','v',S.habit);
+}
+
+/* ================= router ================= */
+var ORDER=['paywall','offer'];
+var CHIPS=[['paywall','Paywall'],['proof','Paywall · proof & price'],['offer','Offer on close']];
+var scr={}, hist=[], cur='paywall';
+document.querySelectorAll('.scr').forEach(function(s){ scr[s.dataset.id]=s; });
+var payBody=document.getElementById('payBody');
+
+function panelKey(){ return cur==='paywall' ? (S.sec==='price'?'proof':'paywall') : cur; }
+function enter(id){ paintChips(); paintPanel(); }
+function go(id,opts){
+  opts=opts||{}; if(id===cur) return;
+  var from=scr[cur], to=scr[id];
+  if(!opts.back) hist.push(cur);
+  if(from){ from.classList.remove('is-active');
+    if(!to.classList.contains('sheet') && !from.classList.contains('sheet')) from.classList.add('is-past'); }
+  if(to.classList.contains('sheet')) from.classList.add('is-active');
+  to.classList.remove('is-past'); to.classList.add('is-active');
+  cur=id; enter(id);
+}
+function back(){
+  if(!hist.length) return;
+  var prev=hist.pop();
+  scr[cur].classList.remove('is-active');
+  scr[prev].classList.remove('is-past'); scr[prev].classList.add('is-active');
+  cur=prev; enter(prev);
+}
+function secFromScroll(){ var p=document.getElementById('proof');
+  return (payBody.scrollTop + payBody.clientHeight*0.72 > p.offsetTop) ? 'price' : 'top'; }
+function jump(id){
+  var target = id==='proof' ? 'paywall' : id;
+  Object.keys(scr).forEach(function(k){ scr[k].classList.add('nofx'); scr[k].classList.remove('is-active','is-past'); });
+  hist = target==='offer' ? ['paywall'] : [];
+  if(target==='offer') scr.paywall.classList.add('is-active');
+  scr[target].classList.add('is-active'); cur=target;
+  requestAnimationFrame(function(){ requestAnimationFrame(function(){
+    Object.keys(scr).forEach(function(k){ scr[k].classList.remove('nofx'); }); }); });
+  syncScreen();
+  if(target==='paywall'){
+    payBody.scrollTop = id==='proof' ? document.getElementById('proof').offsetTop-24 : 0;
+    S.sec = id==='proof' ? 'price' : 'top';
+  }
+  enter(target);
+}
+function paintChips(){
+  var c=document.getElementById('chips');
+  if(!c.children.length){
+    CHIPS.forEach(function(x){
+      var b=document.createElement('button'); b.className='chip'+(x[0]==='offer'?' offer':''); b.textContent=x[1];
+      b.dataset.id=x[0]; b.onclick=function(){ stopDemo(); jump(x[0]); }; c.appendChild(b);
+    });
+  }
+  var k=panelKey();
+  c.querySelectorAll('.chip').forEach(function(b){ b.classList.toggle('on', b.dataset.id===k); });
+}
+payBody.addEventListener('scroll',function(){ var s=secFromScroll(); if(s!==S.sec){ S.sec=s; paintChips(); paintPanel(); } });
+
+var toastT=null;
+function toast(){ var el=document.getElementById('toast'); el.textContent=t('toast'); el.classList.add('on'); clearTimeout(toastT);
+  toastT=setTimeout(function(){ el.classList.remove('on'); },2200); }
+
+/* ================= wiring ================= */
+document.getElementById('payClose').addEventListener('click',function(){ go('offer'); });
+document.getElementById('payCta').addEventListener('click',toast);
+document.getElementById('offerCta').addEventListener('click',toast);
+document.getElementById('offClose').addEventListener('click',function(){ back(); });
+document.getElementById('offerNo').addEventListener('click',function(){ back(); });
+document.getElementById('trialTog').addEventListener('click',function(){ S.trial=!S.trial; syncScreen(); });
+
+function setSeg(id,attr,val){ document.querySelectorAll('#'+id+' button').forEach(function(b){ b.classList.toggle('on', b.dataset[attr]===val); }); }
+function setLang(l){ S.lang=l; S0.lang=l; setSeg('segLang','lang',l); applyStatic(); syncScreen(); paintPanel(); }
+function setTheme(th){ S.theme=th; S0.theme=th; document.getElementById('phoneIn').classList.toggle('dark',th==='dark'); setSeg('segTheme','theme',th); }
+document.querySelectorAll('#segLang button').forEach(function(b){ b.addEventListener('click',function(){ stopDemo(); setLang(b.dataset.lang); }); });
+document.querySelectorAll('#segTheme button').forEach(function(b){ b.addEventListener('click',function(){ setTheme(b.dataset.theme); }); });
+[['segGoal','goal'],['segWake','wake'],['segHabit','habit']].forEach(function(p){
+  document.querySelectorAll('#'+p[0]+' button').forEach(function(b){ b.addEventListener('click',function(e){
+    if(e.isTrusted) stopDemo(); S[p[1]]=b.dataset.v; syncScreen(); }); });
+});
+
+/* ================= the 30-second walkthrough ================= */
+var demo={tok:0,on:false,t0:0,iv:null}, finger=document.getElementById('finger'), phoneIn=document.getElementById('phoneIn');
+function W(ms){ return new Promise(function(r){ setTimeout(r,ms); }); }
+function cap(txt){ document.getElementById('demoTxt').textContent=txt; }
+async function tap(sel,tok){
+  if(demo.tok!==tok) throw 0;
+  var el=document.querySelector(sel); if(!el) return;
+  var r=el.getBoundingClientRect(), p=phoneIn.getBoundingClientRect(), z=p.width/phoneIn.offsetWidth||1;
+  finger.style.left=((r.left-p.left+r.width/2)/z)+'px'; finger.style.top=((r.top-p.top+r.height/2)/z)+'px';
+  finger.classList.add('show'); await W(380); if(demo.tok!==tok) throw 0;
+  finger.classList.add('press'); await W(120); finger.classList.remove('press'); el.click(); await W(160);
+  if(demo.tok!==tok) throw 0;
+}
+async function pause(ms,tok){ await W(ms); if(demo.tok!==tok) throw 0; }
+async function scrollTo(y,tok){ /* animate, then set state directly — never wait for scroll events */
+  var y0=payBody.scrollTop, t0=Date.now(), d=650;
+  while(true){ var k=Math.min(1,(Date.now()-t0)/d), e=k<.5?2*k*k:1-Math.pow(-2*k+2,2)/2;
+    payBody.scrollTop=y0+(y-y0)*e; if(k>=1) break; await W(16); if(demo.tok!==tok) throw 0; }
+  S.sec=secFromScroll(); paintChips(); paintPanel();
+}
+function answer(key,v){ S[key]=v; syncScreen(); }
+function startDemo(){
+  stopDemo(); var tok=++demo.tok; demo.on=true; demo.t0=Date.now();
+  var keep={lang:S.lang,theme:S.theme}; S=defaults(); S.lang=keep.lang; S.theme=keep.theme;
+  applyStatic(); jump('paywall');
+  document.getElementById('demoCap').classList.remove('hidden');
+  demo.iv=setInterval(function(){ document.getElementById('demoProg').style.width=Math.min(100,(Date.now()-demo.t0)/253)+'%'; },200);
+  (async function(){
+    try{
+      finger.classList.remove('show');
+      cap('Julia just finished your onboarding: “More energy”, up at 7:00, wants to add breathwork.'); await pause(2600,tok);
+      cap('Your letter from Future Julia now names the change she asked for.'); await pause(2300,tok);
+      await scrollTo(document.getElementById('routine').offsetTop-70,tok);
+      cap('Your routine card: her tile lifted, and the morning her answers built.'); await pause(2600,tok);
+      cap('Had she picked “More sleep” and 8:00, the title, tile and checklist follow.');
+      answer('goal','sleep'); await pause(900,tok); answer('wake','8'); await pause(1700,tok);
+      await scrollTo(document.getElementById('proof').offsetTop-24,tok);
+      cap('Your own proof, next to the button: Duke, 96%, 22M, 4.4 from 89K ratings.'); await pause(2600,tok);
+      cap('And the price, before the tap: 7 days free, then $39.99 every 3 months.'); await pause(1500,tok);
+      await tap('#trialTog',tok); await pause(900,tok); await tap('#trialTog',tok); await pause(700,tok);
+      cap('She closes it.'); await tap('#payClose',tok); await pause(600,tok);
+      cap('One second chance: your $49.99 annual plan, side by side with four quarters.'); finger.classList.remove('show'); await pause(3300,tok);
+      cap('That is the paywall. Every element is yours; only what it says changed.'); await pause(2200,tok); stopDemo();
+    }catch(e){}
+  })();
+}
+function stopDemo(){ if(!demo.on) return; demo.tok++; demo.on=false; clearInterval(demo.iv); finger.classList.remove('show','press');
+  document.getElementById('demoCap').classList.add('hidden'); }
+document.getElementById('demoBtn').addEventListener('click',startDemo);
+document.getElementById('demoStop').addEventListener('click',stopDemo);
+phoneIn.addEventListener('pointerdown',function(e){ if(e.isTrusted && demo.on) stopDemo(); });
+</script>
+<script>
+/* ---- the short panel: hypothesis + potential outcome, nothing else ---- */
+var PANEL = {
+paywall:{n:1,t:'Put the change they asked for in the letter',
+ hyp:'Try the letter from Future Julia and the routine title naming her answer to “What single change would improve your life right now?”, <b>because today she reads “healthy, in great shape and worry-free” and “Build a Routine based on your goals!” whatever she answered</b>. Change her answer below the phone — the letter and the title follow.',
+ out:'CR +15–20%',
+ n2:4, t2:'Show the morning their answers built',
+ hyp2:'Try lifting her tile on your four-tile poster and filling your tracking sheet with her morning — wake time, 10–20 minutes, the habit she added, the breakfast she skipped — <b>because the card promises a routine “based on your goals” and then shows the same poster to everyone</b>.',
+ out2:'CR +10–15%',
+ kept:'The plum background, the gold coin, the blue “Transformation is just moments away!” pill, “Julia, do you copy?”, the letter’s rhythm and sign-off, the hand-lettered title, the four coloured tiles with their own bullets, the toggle card and the white pill.'},
+proof:{n:3,t:'Bring your Duke, 96% and 22M back to the paywall',
+ hyp:'Try your own proof row between the routine and the button, <b>because Duke, “96% of users say Fabulous has changed their lives” and “22M strong” sit on a quiz screen ten steps earlier, and your 4.4 from 89K ratings and Editors’ Choice appear nowhere in the flow</b>.',
+ out:'CR +10–15%',
+ n2:5, t2:'Say the price before they tap',
+ hyp2:'Try one price line under your white pill and a two-step free-week timeline, <b>because the paywall never names a price and “$39.99 every 3 months” first appears in Apple’s sheet, after the tap</b>. Switch the toggle off — the line and the button change with it.',
+ out2:'CR +5–10%',
+ kept:'The three stats exactly as your “We hear you loud and clear” screen shows them, your Terms • Privacy links, the renewal text, the green toggle card and “Try free for 7 days”.'},
+offer:{n:2,t:'Offer your $49.99 annual plan when they close',
+ hyp:'Try this once, from the paywall’s X, <b>because closing the paywall ends the sale today, and your store already lists a Fabulous Annual Subscription at $49.99 next to Premium Quarterly at $39.99</b>. It is a straight purchase with no trial, so it also tests whether direct buyers are worth more to you than trial starters.',
+ out:'ARPU +10–15%',
+ kept:'Your plum, the gold coin, the blue pill, the white pill and the teal of your toggle. Both prices are your own App Store prices; $159.96 and the per-month figures are simple arithmetic on them. There is no countdown, because there is no deadline to count down to.'}
+};
+
+function outBlock(lab,val){
+  return '<div class="pn-out"><div class="lab">'+lab+'</div><div class="v">'+val+'</div></div>';
+}
+function paintPanel(){
+  var d=PANEL[panelKey()]; if(!d) return;
+  var h='<div class="pn-n">Idea '+d.n+' of 5</div><h3 class="pn-t">'+d.t+'</h3>'
+     + '<p class="pn-hyp">'+d.hyp+'</p>'
+     + outBlock('Potential outcome · based on Adapty data', d.out);
+  if(d.hyp2){
+    h += '<div class="pn-sep"></div>'
+       + '<div class="pn-n">Idea '+d.n2+' of 5</div><h3 class="pn-t" style="font-size:19px">'+d.t2+'</h3>'
+       + '<p class="pn-hyp" style="margin-top:12px">'+d.hyp2+'</p>'
+       + outBlock('Potential outcome · based on Adapty data', d.out2);
+  }
+  h += '<div class="pn-kept"><b>Your design, unchanged.</b> '+d.kept+'</div>';
+  if(S.lang!=='en') h += '<div class="pn-kept"><b>Language.</b> Screens are shown in '+(S.lang==='fr'?'French':'Spanish')+' to show one paywall serving every market. Translated by us; store prices stay as published in US dollars.</div>';
+  h += '<div class="pn-foot">Ranges are Adapty’s expected effect from tests across 30,000+ subscription apps — not measured lift for Fabulous. '
+     + 'Prices, ratings and proof points come from your own published material.</div>';
+  document.getElementById('panel').innerHTML = h;
+}
+
+/* ---- views, jumps from the overview ---- */
+function showView(v){
+  if(v!=='proto') stopDemo();
+  document.querySelectorAll('.view').forEach(function(x){ x.classList.remove('on'); });
+  document.getElementById('view-'+v).classList.add('on');
+  document.querySelectorAll('.nav-links button[data-view]').forEach(function(b){ b.classList.toggle('on', b.dataset.view===v); });
+  window.scrollTo(0,0);
+}
+document.querySelectorAll('[data-view]').forEach(function(b){ b.addEventListener('click',function(){ showView(b.dataset.view); }); });
+document.querySelectorAll('.idea[data-jump]').forEach(function(b){
+  b.addEventListener('click',function(){ showView('proto'); jump(b.dataset.jump); });
+});
+document.querySelectorAll('[data-demo]').forEach(function(b){ b.addEventListener('click',function(){ showView('proto'); startDemo(); }); });
+
+applyStatic();
+syncScreen();
+scr.paywall.classList.add('is-active');
+paintChips(); paintPanel();
+if(/[?&]open=proto/.test(location.search)) showView('proto');
+</script>
+</body>
+</html>
